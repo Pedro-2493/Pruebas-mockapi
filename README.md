@@ -1,7 +1,7 @@
 # API Gestión de Equipos Médicos
 
-**Estudiante:** Pedro Luis Zamora Martinez
-**Curso:** Backend 2 - Java  
+- **Estudiante:** Pedro Luis Zamora Martinez
+- **Curso:** Backend 2 - Java  
 
 ---
 
@@ -16,30 +16,21 @@ El objetivo es demostrar el diseño de un modelo de datos complejo, la implement
 
 ## 🌐 URL Base de la API
 
-- **URL**:`https://698782d48bacd1d773ed9c2a.mockapi.io/medical-equipment`
-
----
-
+- **URL:** `https://698782d48bacd1d773ed9c2a.mockapi.io/medical-equipment`
 
 ---
 
 ## 1. Modelo de Datos
 
-Se configuro el recurso de **Equipos Medicos** con la siguiente estructura de datos. 
+Se configuró el recurso de **Equipos Médicos** con la siguiente estructura de datos.
 
 ```json
-
 [
   {
     "name": "Monitor de Signos Vitales Dash 4000",
     "description": "Monitor multiparamétrico para cuidados intensivos y urgencias.",
     "specification": {
-      "parameters": [
-        "ECG",
-        "SpO2",
-        "NIBP",
-        "Temp"
-      ],
+      "parameters": ["ECG", "SpO2", "NIBP", "Temp"],
       "screen": "10.4 inch LCD"
     },
     "maintenanceLogs": [
@@ -55,23 +46,23 @@ Se configuro el recurso de **Equipos Medicos** con la siguiente estructura de da
 ]
 ```
 
-## 2. Bitacora de opreciones CRUD 
+---
 
-### A. Obtener todos los registros** (`GET`)
-- **Codigo de estado**: `200 OK`
-- **Respuesta de postman**:
+## 2. Bitácora de Operaciones CRUD
+
+### A. Obtener todos los registros (`GET`)
+
+- **Endpoint:** `/medical-equipment`
+- **Status Code:** `200 OK`
+- **Respuesta de Postman:**
+
 ```json
 [
     {
         "name": "Monitor de Signos Vitales Dash 4000",
         "description": "Monitor multiparamétrico para cuidados intensivos y urgencias.",
         "specification": {
-            "parameters": [
-                "ECG",
-                "SpO2",
-                "NIBP",
-                "Temp"
-            ],
+            "parameters": ["ECG", "SpO2", "NIBP", "Temp"],
             "screen": "10.4 inch LCD"
         },
         "maintenanceLogs": [
@@ -106,11 +97,7 @@ Se configuro el recurso de **Equipos Medicos** con la siguiente estructura de da
         "name": "Ventilador Mecánico Puritan Bennett 980",
         "description": "Sistema de ventilación asistida para pacientes neonatales y adultos.",
         "specification": {
-            "modes": [
-                "AC",
-                "SIMV",
-                "SPONT"
-            ],
+            "modes": ["AC", "SIMV", "SPONT"],
             "oxygenInlet": "High Pressure"
         },
         "maintenanceLogs": [],
@@ -139,11 +126,7 @@ Se configuro el recurso de **Equipos Medicos** con la siguiente estructura de da
         "description": "Estación de trabajo integrada para quirófanos de alta complejidad.",
         "specification": {
             "vaporizers": 2,
-            "gasTypes": [
-                "O2",
-                "Air",
-                "N2O"
-            ],
+            "gasTypes": ["O2", "Air", "N2O"],
             "ventilator": "SmartVent"
         },
         "maintenanceLogs": [],
@@ -153,22 +136,36 @@ Se configuro el recurso de **Equipos Medicos** con la siguiente estructura de da
 ]
 ```
 
+---
+
 ### B. Creación de un nuevo registro (`POST`)
-- **Codigo de estado**: `201 Create`
-- **Cuerpo enviado en postman**:
+
+- **Endpoint:** `/medical-equipment`
+- **Status Code:** `201 Created`
+- **Cuerpo enviado en Postman:**
+
 ```json
- {
+{
     "name": "Electrocardiógrafo MAC 2000",
     "description": "Equipo de ECG de 12 derivaciones con análisis interpretativo.",
-    "specification": { "channels": 12, "connectivity": "LAN/Wi-Fi", "storage": "200 ECGs" },
+    "specification": {
+        "channels": 12,
+        "connectivity": "LAN/Wi-Fi",
+        "storage": "200 ECGs"
+    },
     "maintenanceLogs": [
-      { "date": "2023-09-12", "type": "Reemplazo de cable de paciente", "technician": "Ing. Carlos Daza" }
+        {
+            "date": "2023-09-12",
+            "type": "Reemplazo de cable de paciente",
+            "technician": "Ing. Carlos Daza"
+        }
     ],
-    "isOperational": false,
-    "id": "6"
-  }
+    "isOperational": false
+}
 ```
-- **Respuesta de postman**:
+
+- **Respuesta de Postman:**
+
 ```json
 {
     "name": "Electrocardiógrafo MAC 2000",
@@ -190,22 +187,20 @@ Se configuro el recurso de **Equipos Medicos** con la siguiente estructura de da
 }
 ```
 
+---
 
-### C. Búsqueda de registros individuales (`GET`)
-- **Punto final**: `/medical-equipment/2`
-- **Código de estado**: `200 OK`
-- **Respuesta de postman**:
+### C. Búsqueda de registro individual (`GET`)
+
+- **Endpoint:** `/medical-equipment/1`
+- **Status Code:** `200 OK`
+- **Respuesta de Postman:**
+
 ```json
 {
     "name": "Monitor de Signos Vitales Dash 4000",
     "description": "Monitor multiparamétrico para cuidados intensivos y urgencias.",
     "specification": {
-        "parameters": [
-            "ECG",
-            "SpO2",
-            "NIBP",
-            "Temp"
-        ],
+        "parameters": ["ECG", "SpO2", "NIBP", "Temp"],
         "screen": "10.4 inch LCD"
     },
     "maintenanceLogs": [
@@ -220,10 +215,37 @@ Se configuro el recurso de **Equipos Medicos** con la siguiente estructura de da
 }
 ```
 
+---
+
 ### D. Actualización de un registro (`PUT`)
-- **Código de estado**: `200 OK`
-- **Modificación**: Se actualizó la fecha de mantenimiento del registro con  `ID` 2.
-- **Respuesta de postman**:
+
+- **Endpoint:** `/medical-equipment/2`
+- **Status Code:** `200 OK`
+- **Modificación:** Se actualizó la fecha de mantenimiento del registro con `ID` 2 (de `2023-11-20` a `2023-08-15`).
+- **Cuerpo enviado en Postman:**
+
+```json
+{
+    "name": "Desfibrilador Externo Automático (DEA) G5",
+    "description": "Dispositivo de respuesta rápida con instrucciones de voz.",
+    "specification": {
+        "energy": "Bifásica",
+        "batteryLife": "4 years",
+        "ipRating": "IP55"
+    },
+    "maintenanceLogs": [
+        {
+            "date": "2023-08-15",
+            "type": "Cambio de parches/electrodos",
+            "technician": "Soporte Técnico"
+        }
+    ],
+    "isOperational": true
+}
+```
+
+- **Respuesta de Postman:**
+
 ```json
 {
     "name": "Desfibrilador Externo Automático (DEA) G5",
@@ -245,9 +267,14 @@ Se configuro el recurso de **Equipos Medicos** con la siguiente estructura de da
 }
 ```
 
-### E. Eliminación de un registro (DELETE)
-- **Status code**:`200 OK`
-- **Respuesta de postman**:
+---
+
+### E. Eliminación de un registro (`DELETE`)
+
+- **Endpoint:** `/medical-equipment/2`
+- **Status Code:** `200 OK`
+- **Respuesta de Postman:**
+
 ```json
 {
     "name": "Desfibrilador Externo Automático (DEA) G5",
@@ -269,21 +296,27 @@ Se configuro el recurso de **Equipos Medicos** con la siguiente estructura de da
 }
 ```
 
-### F. Validación de recurso inexistente (GET 404)
-- **Status code**: `404 Not Found`
-- **Respuesta de postman**:
+---
+
+### F. Validación de recurso inexistente (`GET`)
+
+- **Endpoint:** `/medical-equipment/99`
+- **Status Code:** `404 Not Found`
+- **Respuesta de Postman:**
+
 ```json
 "Not found"
 ```
 
+---
+
 ## 3. Resumen de Endpoints y Códigos HTTP
 
-| Acción      | Método | Endpoint             | Código HTTP   |
-|------------ |--------|----------------------|---------------|
-| Listar todo | GET    | /medical-equipment   | 200 OK        |
-| Crear       | POST   | /medical-equipment   | 201 Created   |
-| Ver por ID  | GET    | /medical-equipment/1 | 200 OK        |
-| Actualizar  | PUT    | /medical-equipment/2 | 200 OK        |
-| Borrar      | DELETE | /medical-equipment/2 | 200 OK        |
-| Error       | GET    | /medical-equipment/2 | 404 Not Found |
-
+| Acción       | Método | Endpoint               | Código HTTP   |
+|--------------|--------|------------------------|---------------|
+| Listar todo  | GET    | /medical-equipment     | 200 OK        |
+| Crear        | POST   | /medical-equipment     | 201 Created   |
+| Ver por ID   | GET    | /medical-equipment/1   | 200 OK        |
+| Actualizar   | PUT    | /medical-equipment/2   | 200 OK        |
+| Borrar       | DELETE | /medical-equipment/2   | 200 OK        |
+| Error        | GET    | /medical-equipment/99  | 404 Not Found |
